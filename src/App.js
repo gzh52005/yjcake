@@ -23,9 +23,11 @@ import Reg from './views/Reg';
 import NotFound from './views/NotFound';
 
 import Nav from './components/Nav';
-function App() {
+import Header from './components/Header';
+function App(props) {
   return (
     <div className="App">
+      <Header />
       <Nav />
       <Switch>
           <Route path="/home" component={Home} />
@@ -42,5 +44,5 @@ function App() {
     </div>
   );
 }
-// App=withRouter(App);
+App=withRouter(App);
 export default App;

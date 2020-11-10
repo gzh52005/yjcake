@@ -1,0 +1,28 @@
+@import './base.scss';
+.header{
+    height: vw(50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 vw(10);
+    box-shadow: 0 vw(-2) vw(10) #ccc;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    .title{
+        img{
+            width: vw(118);
+            height: vw(25);
+        }
+        span{
+            font-size: vw(14);
+            color: #b58c78;
+        }
+    }
+    .icons-list{
+        font-size: vw(22);
+        color: #b58c78;
+    }
+}

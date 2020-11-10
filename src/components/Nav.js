@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import '../assets/css/nav.css'
+import '../assets/sass/nav.scss';
 import {
     HomeOutlined,
     AppstoreOutlined,
