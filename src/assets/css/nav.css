@@ -1,0 +1,22 @@
+.nav {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  color: #b58c78;
+  box-shadow: 0 2px 10px #ccc;
+  padding: 7px 0;
+}
+.nav .navItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nav .navItem .icon {
+  height: 20px;
+}
+.nav .navItem span {
+  font-size: 14px;
+}
