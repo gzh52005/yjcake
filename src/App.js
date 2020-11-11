@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 // 按需引入（一般使用babel-plugin-import工具帮助我们实现按需加载）
@@ -16,6 +16,7 @@ import {Route,Redirect,Switch,withRouter} from 'react-router-dom';
 // 引入页面组件
 import Home from './views/Home';
 import List from './views/List';
+import Detail from './views/Detail';
 import Order from './views/Order';
 import Cart from './views/Cart';
 import Mine from './views/Mine';
@@ -33,6 +34,7 @@ function App(props) {
       <Switch>
           <Route path="/home" component={Home} />
           <Route path="/list" component={List} />
+          <Route path="/detail" component={Detail} />
           <Route path="/order" component={Order} />
           <Route path="/cart" component={Cart} />
           <Route path="/mine" component={Mine} />

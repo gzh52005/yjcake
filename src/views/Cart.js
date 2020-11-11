@@ -7,7 +7,7 @@ function Home(){
             <ul className="cartItems">
                 <li>
                     <div className="pic">
-                        <img src="http://img.maixiaobu.cn/yujian-anyang/product/20200925/99b037aaaad5159a.jpg" />
+                        <img src="http://img.maixiaobu.cn/yujian-anyang/product/20200925/99b037aaaad5159a.jpg"  alt="" />
                     </div>
                     <div className="content">
                         <div className="title">

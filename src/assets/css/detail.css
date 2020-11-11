@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+.main {
+  width: 100%;
+  top: calc(100% - vw(50));
+  padding: 13.3333333333vw 0 16vw;
+}
+
+.detail .buyIt {
+  position: fixed;
+  padding: 2.6666666667vw 0;
+  background: #e1e1e1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.detail .buyIt button {
+  height: 10.6666666667vw;
+  line-height: 10.6666666667vw;
+  background: #4a2321;
+  color: #fff;
+  width: 45%;
+  margin: 0 1%;
+  font-size: 3.7333333333vw;
+  text-align: center;
+  display: inline-block;
+}

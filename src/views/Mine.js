@@ -14,7 +14,7 @@ function Home(){
             <div className="mine">
                 <div className="member">
                     <div className="avator">
-                        <img src="http://img.maixiaobu.cn/yujian-anyang/fixed/20181022/0c2188979be61c61.png" />
+                        <img src="http://img.maixiaobu.cn/yujian-anyang/fixed/20181022/0c2188979be61c61.png" alt=""/>
                     </div>
                     <div className="memberContent">
                         <div>
