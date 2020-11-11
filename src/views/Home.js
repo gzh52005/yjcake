@@ -27,7 +27,7 @@ function Home(props){
         <div className="main">
             <div className="home">
                 <div className="sweiper">
-                    <Carousel autoplay style={{touchAction: 'none'}}>
+                    <Carousel autoplay style={{touchAction: 'none'}} >
                         {
                             console.log("slideData,listdata",slideData,listdata),
                             slideData.slice(0,5).map(item=><img src={item.pic_link} key={item._id} alt="图片" onClick={()=>{

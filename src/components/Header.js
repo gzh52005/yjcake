@@ -12,14 +12,29 @@ import {
 function Header(props){
     // console.log("header-props",props);
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
-    const [titleName,changedetail] = useState();
-    useEffect(()=>{
-        // 这里的代码在组件渲染结束后执行（初始化和组件更新）
-        // 发起请求
-        request(`/goodslist/getgood/${goodsId}`).then(res=>{
-            changedetail(res.data[0].name)
-        })
-    },[])
+    const [titleName, setData] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+     
+    useEffect(() => {
+        const fetchData = async()=>{
+            setIsLoading(true);
+            if(props.location.pathname.split('/')[1]==='detail'){
+                const result = await request(
+                    `/goodslist/getgood/${goodsId}`,
+                );
+                console.log(result);
+                if(result.flag){
+                    setData(result.data[0].name);
+                    setIsLoading(false);
+                }
+            }else{
+                setData('Loading...');
+                setIsLoading(false);
+            }
+        
+        }
+        fetchData();
+    },[goodsId]); 
     return(
         <div className="header">
             <div className="icons-list">
@@ -33,12 +48,22 @@ function Header(props){
             </div>
             <div className="title">
                 {
+                    // console.log("titleName",titleName)
+                }
+                {
                     props.location.pathname==='/'||props.location.pathname==='/home'||props.location.pathname==='/mine'?
                         <img src="http://img.maixiaobu.cn/yujian-anyang/fixed/20181226/3ff9703e5be78449.png"  alt="" />:
                         props.location.pathname==='/list'?<span>蛋糕名录</span>:
                         props.location.pathname==='/cart'?<span>购物车</span>:
                         props.location.pathname==='/order'?<span>我的订单</span>:
-                        <span>{titleName}</span>
+                        <span>
+                            {isLoading ? (
+                               ' Loading... '
+                            ) : (
+                                titleName
+                            )}
+                                
+                        </span>
                     
                 }
             </div>
