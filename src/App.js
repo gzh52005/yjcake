@@ -17,6 +17,7 @@ import {Route,Redirect,Switch,withRouter} from 'react-router-dom';
 import Home from './views/Home';
 import List from './views/List';
 import Order from './views/Order';
+import Cart from './views/Cart';
 import Mine from './views/Mine';
 import Login from './views/Login';
 import Reg from './views/Reg';
@@ -33,6 +34,7 @@ function App(props) {
           <Route path="/home" component={Home} />
           <Route path="/list" component={List} />
           <Route path="/order" component={Order} />
+          <Route path="/cart" component={Cart} />
           <Route path="/mine" component={Mine} />
           <Route path="/login" component={Login} />
           <Route path="/reg" component={Reg} />

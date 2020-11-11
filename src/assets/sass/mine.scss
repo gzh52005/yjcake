@@ -1,0 +1,63 @@
+@import './base.scss';
+
+.mine{
+    margin: 3%;
+    .member{
+        display: flex;
+        .avator{
+            width: 35%;
+            text-align: left;
+            img{
+                width: vw(100);
+                height: vw(100);
+                border-radius: 50%;
+            }
+        }
+        .memberContent{
+            width: 65%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            div{
+                color: #a36663;
+                p{
+                    margin: vw(10) 0 0 vw(10);
+                    font-size: vw(12);
+                    
+                }
+            }
+        }
+    }
+    .others{
+        padding-left: vw(50);
+        span{
+            padding: vw(2) vw(8);
+            background: #a36663;
+            color: #fff;
+            margin: 0 vw(5);
+            font-size: vw(12);
+        }
+    }
+    .memberCon{
+        width: 100%;
+        height: vw(100);
+        margin: vw(30) 0 vw(40);
+        display: flex;
+        flex-wrap: wrap;
+        span{
+            color: #a36663;
+            font-size: vw(12);
+        }
+        div{
+            width: 19%;
+            margin-bottom: vw(20);
+            color: #a36663;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            b{
+                font-size: vw(26);
+            }
+        }
+    }
+}

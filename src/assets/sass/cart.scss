@@ -1,0 +1,89 @@
+@import './base.scss';
+.cartItems{
+    padding: vw(10);
+    box-shadow: 0 vw(2) vw(10) #ccc;
+    li{
+        display: flex ;
+        align-items: center;
+        .pic{
+            img{
+                width:vw(100);
+                height: vw(100);
+                margin-right: vw(10);
+            }
+        }
+        .content{
+            width: 100%;
+            display: flex ;
+            flex-direction: column;
+            .title,.stepper{
+                display: flex ;
+                justify-content: space-between;
+                align-items: center;
+                font-size: vw(12);
+                line-height: vw(33.3);
+                color: #9a5b57;
+                p{
+                    text-align: left;
+                }
+                
+            }
+            .stepper{
+                display: flex;
+                justify-content: space-between;
+                div{
+                    button,span{
+                        display: inline-block;
+                        height: vw(30);
+                        width: vw(30);
+                        text-align: center;
+                        margin: 0 vw(2);
+                        background: #9a5b57;
+                        color: #fff;
+                        border: vw(1) solid #9a5b57;
+                        vertical-align: middle;
+                        border-radius: vw(3);
+                    }
+                    span{
+                        width: vw(45);
+                        background: #fff;
+                        color: #9a5b57;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+.cart{
+    width: 100%;
+    height: vw(53);
+    text-indent: vw(7);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+    background: #e5e6e8;
+    padding: vw(7) 0;
+    z-index: 1;
+    .check{
+        color: #9a5b57;
+        span{
+            margin-left: vw(20);
+            font-size: vw(12);
+        }
+    }
+    .gobuy{
+        height: vw(53);
+        padding: 0 vw(20);
+        background: #492321;
+        color: #fff;
+        text-indent: 0;
+        font-size: vw(14);
+        letter-spacing: vw(2);
+        line-height: vw(53);
+    }
+}

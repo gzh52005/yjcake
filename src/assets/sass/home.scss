@@ -1,0 +1,19 @@
+@import './base.scss';
+.home{
+    overflow: hidden;
+    .sweiper,.adPic{
+        width: 100%;
+        img{
+            width: 100%;
+        }
+    }
+    .footer{
+        padding: vw(15) 0;
+        p{
+            color: #8f5451;
+            line-height: 1.3;
+            text-align: center;
+            font-size: vw(12);
+        }
+    }
+}
