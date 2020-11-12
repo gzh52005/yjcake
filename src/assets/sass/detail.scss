@@ -1,7 +1,43 @@
 @import './base.scss';
 
 .detail{
-
+    .content{
+        padding: 0 vw(15) vw(20);
+        background: #fff;
+        h1{
+            font-weight: 900;
+        }
+        p{
+            margin-bottom: vw(0);
+            line-height: 1.7;
+            font-size: vw(12);
+        }
+        .choceSpec{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: vw(33);
+            line-height: vw(33);
+            border-top: vw(1) solid #e8e8e8;
+            border-bottom: vw(1) solid #e8e8e8;
+            color: #76361f;
+            margin-top: -vw(-1);
+            p{
+                text-indent: vw(10);
+                span{
+                    margin: 0 vw(15);
+                    
+                }
+            }
+            
+        }
+        .bigImg{
+            margin: vw(10) 0;
+            img{
+                width: 100%;
+            }
+        }
+    }
     .buyIt{
         position: fixed;
         padding: vw(10) 0;
@@ -20,6 +56,91 @@
             font-size: vw(14);
             text-align: center;
             display: inline-block;
+        }
+    }
+}
+.mask{
+    position: fixed;
+    top: vw(50);
+    left: 0;
+    right: 0;
+    background: hsla(0,0%,100%,.9);
+    bottom: 0;
+    z-index: 2;
+    overflow: auto;
+    padding-bottom: vw(20);
+    h1{
+        padding: 0 vw(15);
+        color: #522725;
+        font-size: vw(16);
+        padding-top: vw(10);
+    }
+    img{
+        width: 100%;
+        margin: vw(10) 0;
+        padding: 0;
+    }
+    .specs{
+        padding: 0 vw(15);
+        font-size: vw(12);
+        .specName{
+            display: inline-block;
+            margin: vw(5);
+            background: #f2f2f2;
+            border: vw(1) solid #753724;
+            position: relative;
+            padding: vw(8) vw(15);
+        }
+        .chocespec::after{
+            content: "\221A";
+            position: absolute;
+            color: #fff;
+            background: #753724;
+            padding: vw(2) vw(5);
+            left: vw(-3);
+            top: vw(-3);
+            transform: scale(.7);
+        }
+    }
+    .changeNum{
+        font-size: vw(12);
+        margin-top: vw(20);
+        height: vw(30);
+        padding: 0 vw(15);
+        b:nth-of-type(1){
+            margin-left: vw(20);
+        }
+        b{
+            height: vw(28);
+            width: vw(28);
+            text-align: center;
+            display: inline-block;
+            color: #fff;
+            background: #753724;
+            border: vw(1) solid #753724;
+            margin: 0 vw(2);
+            font-size: vw(16);
+            vertical-align: middle;
+        }
+        .num{
+            background: #fff;
+            color: #753724;
+            font-size: vw(12);
+            line-height: vw(28);
+            
+        }
+    }
+    .isSure{
+        text-align: center;
+        span{
+            border: vw(1) solid #7b4342;
+            display: inline-block;
+            height: vw(30);
+            line-height: vw(30);
+            color: #7b4342;
+            display: inline-block;
+            padding: 0 vw(20);
+            margin-top: vw(30);
         }
     }
 }

@@ -20,7 +20,7 @@ function request(url,data,options={}){
     }
     return fetch(url,{
         ...options,
-        credentials:'include',
+        // credentials:'include',
     })
     .then(res=>{
         return res.json()

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -30,6 +31,41 @@ button {
   padding: 13.3333333333vw 0 16vw;
 }
 
+.detail .content {
+  padding: 0 4vw 5.3333333333vw;
+  background: #fff;
+}
+.detail .content h1 {
+  font-weight: 900;
+}
+.detail .content p {
+  margin-bottom: 0vw;
+  line-height: 1.7;
+  font-size: 3.2vw;
+}
+.detail .content .choceSpec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8.8vw;
+  line-height: 8.8vw;
+  border-top: 0.2666666667vw solid #e8e8e8;
+  border-bottom: 0.2666666667vw solid #e8e8e8;
+  color: #76361f;
+  margin-top: -vw(-1);
+}
+.detail .content .choceSpec p {
+  text-indent: 2.6666666667vw;
+}
+.detail .content .choceSpec p span {
+  margin: 0 4vw;
+}
+.detail .content .bigImg {
+  margin: 2.6666666667vw 0;
+}
+.detail .content .bigImg img {
+  width: 100%;
+}
 .detail .buyIt {
   position: fixed;
   padding: 2.6666666667vw 0;
@@ -49,4 +85,89 @@ button {
   font-size: 3.7333333333vw;
   text-align: center;
   display: inline-block;
+}
+
+.mask {
+  position: fixed;
+  top: 13.3333333333vw;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  bottom: 0;
+  z-index: 2;
+  overflow: auto;
+  padding-bottom: 5.3333333333vw;
+}
+.mask h1 {
+  padding: 0 4vw;
+  color: #522725;
+  font-size: 4.2666666667vw;
+  padding-top: 2.6666666667vw;
+}
+.mask img {
+  width: 100%;
+  margin: 2.6666666667vw 0;
+  padding: 0;
+}
+.mask .specs {
+  padding: 0 4vw;
+  font-size: 3.2vw;
+}
+.mask .specs .specName {
+  display: inline-block;
+  margin: 1.3333333333vw;
+  background: #f2f2f2;
+  border: 0.2666666667vw solid #753724;
+  position: relative;
+  padding: 2.1333333333vw 4vw;
+}
+.mask .specs .chocespec::after {
+  content: "√";
+  position: absolute;
+  color: #fff;
+  background: #753724;
+  padding: 0.5333333333vw 1.3333333333vw;
+  left: -0.8vw;
+  top: -0.8vw;
+  transform: scale(0.7);
+}
+.mask .changeNum {
+  font-size: 3.2vw;
+  margin-top: 5.3333333333vw;
+  height: 8vw;
+  padding: 0 4vw;
+}
+.mask .changeNum b:nth-of-type(1) {
+  margin-left: 5.3333333333vw;
+}
+.mask .changeNum b {
+  height: 7.4666666667vw;
+  width: 7.4666666667vw;
+  text-align: center;
+  display: inline-block;
+  color: #fff;
+  background: #753724;
+  border: 0.2666666667vw solid #753724;
+  margin: 0 0.5333333333vw;
+  font-size: 4.2666666667vw;
+  vertical-align: middle;
+}
+.mask .changeNum .num {
+  background: #fff;
+  color: #753724;
+  font-size: 3.2vw;
+  line-height: 7.4666666667vw;
+}
+.mask .isSure {
+  text-align: center;
+}
+.mask .isSure span {
+  border: 0.2666666667vw solid #7b4342;
+  display: inline-block;
+  height: 8vw;
+  line-height: 8vw;
+  color: #7b4342;
+  display: inline-block;
+  padding: 0 5.3333333333vw;
+  margin-top: 8vw;
 }
