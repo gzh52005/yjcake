@@ -1,0 +1,28 @@
+@import './base.scss';
+
+.login{
+    margin: auto vw(20);
+    text-align: center;
+    button{
+        margin:vw(15) 0;
+    }
+    .ant-row{
+        flex-wrap: nowrap;
+        width: vw(150);
+    }
+
+    .ant-col{
+        max-width: vw(50);
+    }
+    .footer{
+        height: vw(65);
+        position: fixed;
+        padding: vw(10) 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        background-color: #fff;
+        color: #fff;
+    }
+}

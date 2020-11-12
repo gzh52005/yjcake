@@ -56,6 +56,7 @@ function Header(props){
                         props.location.pathname==='/list'?<span>蛋糕名录</span>:
                         props.location.pathname==='/cart'?<span>购物车</span>:
                         props.location.pathname==='/order'?<span>我的订单</span>:
+                        props.location.pathname==='/login'?<span>登录</span>:props.location.pathname==='/reg'?<span>注册</span>:
                         <span>
                             {isLoading ? (
                                ' Loading... '
@@ -69,7 +70,8 @@ function Header(props){
             </div>
             <div className="icons-list">
                 {
-                    props.location.pathname==='/cart'?<DeleteOutlined />:<ShoppingCartOutlined />
+                    props.location.pathname==='/cart'?<DeleteOutlined />:
+                    props.location.pathname==='/login'||props.location.pathname==='/reg'?<span></span>:<ShoppingCartOutlined />
                 }
             </div>
         </div>
