@@ -3,36 +3,39 @@ import { Form, Input, Button,message} from 'antd';
 import CryptoJS from 'crypto-js';
 import request from '../utils/request';
 import '../assets/sass/login.scss';
-function Home(props){
-    const onFinish =async values => {
-        // 用户信息加密
-        const password = CryptoJS.SHA256(values.password).toString();
-        // 注册请求
-        const data=await request.get('/user/checkCode/reg',{
-            name:values.username,
-            password:password,
-            code:values.checkCode,
-        })
-        console.log("data",data);
-        if(data.code===2000){
-          message.success('注册成功');
-          // 注册成功跳转到登录
-          props.history.replace({
-            pathname:'/login',
-            state:{
-                username:values.username
-            }
-        })
-        }else if(data.code===3000){
-          message.error('注册失败');
-        }
-        
-    };
+function Reg(props){
     const [imgcode, setImgcode] = useState({img:'点击获取验证码'});
     useEffect(() => {
         console.log(imgcode);
         document.querySelector('.imgcode').innerHTML=imgcode.img;
     },[imgcode]); 
+    const onFinish =async values => {
+        // 用户信息加密
+        const password = CryptoJS.SHA256(values.password).toString();
+        // 验证验证码
+        if(values.checkCode===imgcode.code){
+            // 注册请求
+            const data=await request.post('/user/reg',{
+                name:values.username,
+                password:password,
+            })
+            console.log("data",data);
+            if(data.code===2000){
+                message.success('注册成功');
+                // 注册成功跳转到登录
+                props.history.replace({
+                    pathname:'/login',
+                    state:{
+                        username:values.username
+                    }
+                })
+            }else if(data.code===3000){
+                message.error('注册失败');
+            }
+        }
+        
+        
+    };
     return(
         <div className="main">
             <div className="login">
@@ -124,4 +127,4 @@ function Home(props){
     )
 }
 
-export default Home;
+export default Reg;

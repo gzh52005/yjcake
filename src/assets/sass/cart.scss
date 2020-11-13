@@ -1,10 +1,20 @@
 @import './base.scss';
+.icon-list{
+    width: vw(40);
+    font-size: vw(23);
+    position: fixed;
+    top:vw(7);
+    right: vw(10);
+    z-index: 1000;
+    background: #fff;
+    color: #9a5b57;
+}
 .cartItems{
-    padding: vw(10);
-    box-shadow: 0 vw(2) vw(10) #ccc;
     li{
+        padding: vw(10);
         display: flex ;
         align-items: center;
+        box-shadow: 0 vw(2) vw(10) #ccc;
         .pic{
             img{
                 width:vw(100);
@@ -25,6 +35,9 @@
                 color: #9a5b57;
                 p{
                     text-align: left;
+                    span{
+                        display: block;
+                    }
                 }
                 
             }
@@ -57,7 +70,7 @@
 }
 .cart{
     width: 100%;
-    height: vw(53);
+    height: vw(60);
     text-indent: vw(7);
     position: fixed;
     bottom: 0;
@@ -77,7 +90,7 @@
         }
     }
     .gobuy{
-        height: vw(53);
+        height: vw(60);
         padding: 0 vw(20);
         background: #492321;
         color: #fff;

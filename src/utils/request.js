@@ -4,7 +4,6 @@ const apiUrl = process.env.NODE_ENV === 'development' ? 'http://47.96.19.159:300
 
 function request(url,data,options={}){
     url=apiUrl+url;
-    
     if(options.method === 'get' || options.method===undefined){
         // 请求方法为get请求时
         if(data){
@@ -19,8 +18,7 @@ function request(url,data,options={}){
 
     }
     return fetch(url,{
-        ...options,
-        // credentials:'include',
+        ...options
     })
     .then(res=>{
         return res.json()
@@ -30,7 +28,6 @@ function request(url,data,options={}){
 // 封装get请求
     request.get = function(url,data={},options={}){
         options.method = 'get';
-        
         return request(url,data,options);
     }
 
@@ -43,5 +40,12 @@ function request(url,data,options={}){
         return request(url,data,options);
     }
 
-    
+    request.delete = function(url,data={},options={}){
+        options.method = 'delete';
+        options.body = JSON.stringify(data)
+        options.headers= new Headers({
+            'Content-Type': 'application/json'
+        })
+        return request(url,data,options);
+    }
 export default request;

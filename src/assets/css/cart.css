@@ -30,13 +30,22 @@ button {
   padding: 13.3333333333vw 0 16vw;
 }
 
-.cartItems {
-  padding: 2.6666666667vw;
-  box-shadow: 0 0.5333333333vw 2.6666666667vw #ccc;
+.icon-list {
+  width: 10.6666666667vw;
+  font-size: 6.1333333333vw;
+  position: fixed;
+  top: 1.8666666667vw;
+  right: 2.6666666667vw;
+  z-index: 1000;
+  background: #fff;
+  color: #9a5b57;
 }
+
 .cartItems li {
+  padding: 2.6666666667vw;
   display: flex;
   align-items: center;
+  box-shadow: 0 0.5333333333vw 2.6666666667vw #ccc;
 }
 .cartItems li .pic img {
   width: 26.6666666667vw;
@@ -58,6 +67,9 @@ button {
 }
 .cartItems li .content .title p, .cartItems li .content .stepper p {
   text-align: left;
+}
+.cartItems li .content .title p span, .cartItems li .content .stepper p span {
+  display: block;
 }
 .cartItems li .content .stepper {
   display: flex;
@@ -83,7 +95,7 @@ button {
 
 .cart {
   width: 100%;
-  height: 14.1333333333vw;
+  height: 16vw;
   text-indent: 1.8666666667vw;
   position: fixed;
   bottom: 0;
@@ -104,7 +116,7 @@ button {
   font-size: 3.2vw;
 }
 .cart .gobuy {
-  height: 14.1333333333vw;
+  height: 16vw;
   padding: 0 5.3333333333vw;
   background: #492321;
   color: #fff;

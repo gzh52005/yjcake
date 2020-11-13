@@ -19,6 +19,17 @@ a {
   color: #000;
 }
 
+button {
+  border: none;
+  background: none;
+}
+
+.main {
+  width: 100%;
+  top: calc(100% - vw(50));
+  padding: 13.3333333333vw 0 16vw;
+}
+
 .header {
   height: 13.3333333333vw;
   display: flex;
@@ -31,6 +42,7 @@ a {
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1000;
 }
 .header .title img {
   width: 31.4666666667vw;

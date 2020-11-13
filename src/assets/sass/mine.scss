@@ -1,7 +1,14 @@
 @import './base.scss';
 
 .mine{
-    margin: 3%;
+    text-align: center;
+    padding: 3%;
+    position: fixed;
+    top: vw(60);
+    left: 0;
+    right: 0; 
+    bottom: vw(60);
+    background: #fff;
     .member{
         display: flex;
         .avator{
@@ -20,6 +27,7 @@
             justify-content: space-between;
             div{
                 color: #a36663;
+                text-align: left;
                 p{
                     margin: vw(10) 0 0 vw(10);
                     font-size: vw(12);
@@ -44,6 +52,7 @@
         margin: vw(30) 0 vw(40);
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         span{
             color: #a36663;
             font-size: vw(12);
@@ -60,4 +69,45 @@
             }
         }
     }
-}
+   
+} 
+.editmine{
+        text-align: left;
+        position: fixed;
+        top: vw(60);
+        left: 0;
+        right: 0; 
+        bottom: 0;
+        z-index: -1000;
+        background:#fff;
+        ul{
+            li{
+                width: 100%;
+                list-style: none;
+                padding: vw(15) 3%;
+                border-bottom: vw(1) solid #a36663;
+                line-height: vw(30);
+                span{
+                    color: #a36663;
+                    width: 100%;
+                    height: 100%;
+                    font-size: vw(12);
+                }
+                
+            }
+        }
+        div{
+            width: 100%;
+            height: vw(50);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            line-height: vw(50);
+            background: #522725;
+            cursor: pointer;
+            color: #fff;
+            box-shadow: 0 vw(-2) vw(10) #ccc;
+            text-align: center;
+        }
+    }

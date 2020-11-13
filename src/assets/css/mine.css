@@ -31,7 +31,14 @@ button {
 }
 
 .mine {
-  margin: 3%;
+  text-align: center;
+  padding: 3%;
+  position: fixed;
+  top: 16vw;
+  left: 0;
+  right: 0;
+  bottom: 16vw;
+  background: #fff;
 }
 .mine .member {
   display: flex;
@@ -53,6 +60,7 @@ button {
 }
 .mine .member .memberContent div {
   color: #a36663;
+  text-align: left;
 }
 .mine .member .memberContent div p {
   margin: 2.6666666667vw 0 0 2.6666666667vw;
@@ -74,6 +82,7 @@ button {
   margin: 8vw 0 10.6666666667vw;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 .mine .memberCon span {
   color: #a36663;
@@ -89,4 +98,42 @@ button {
 }
 .mine .memberCon div b {
   font-size: 6.9333333333vw;
+}
+
+.editmine {
+  text-align: left;
+  position: fixed;
+  top: 16vw;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1000;
+  background: #fff;
+}
+.editmine ul li {
+  width: 100%;
+  list-style: none;
+  padding: 4vw 3%;
+  border-bottom: 0.2666666667vw solid #a36663;
+  line-height: 8vw;
+}
+.editmine ul li span {
+  color: #a36663;
+  width: 100%;
+  height: 100%;
+  font-size: 3.2vw;
+}
+.editmine div {
+  width: 100%;
+  height: 13.3333333333vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 13.3333333333vw;
+  background: #522725;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 -0.5333333333vw 2.6666666667vw #ccc;
+  text-align: center;
 }

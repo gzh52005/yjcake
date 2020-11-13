@@ -4,33 +4,38 @@ import CryptoJS from 'crypto-js';
 import request from '../utils/request';
 import '../assets/sass/login.scss';
 function Login(props){
-    const currentUsername = props.location.state ? props.location.state.username : ''
-    const onFinish =async function(values)  {
-      const password = CryptoJS.SHA256(values.password).toString();
-      // 加密用户信息
-    //   console.log("values",values);
-      // 验证登录是否
-      let currentUser=await request('/user/getVerify/login',{
-        name:values.username,
-        password:password,
-        code:values.checkCode+'',
-        
-    })
-      console.log("currentUser=",currentUser);
-      if(currentUser.code === 2000){
-        // props.login(currentUser.data,values.remember);
-        // 登录跳转
-        props.history.replace('/mine');
-      }else if(currentUser.code === 3000){
-          message.error('用户名或密码错误')
-      }
-     
-    };
     const [imgcode, setImgcode] = useState({img:'点击获取验证码'});
     useEffect(() => {
         console.log(imgcode);
         document.querySelector('.imgcode').innerHTML=imgcode.img;
     },[imgcode]); 
+
+    const currentUsername = props.location.state ? props.location.state.username : ''
+    const onFinish =async function(values)  {
+      const password = CryptoJS.SHA256(values.password).toString();
+      // 加密用户信息
+    //   console.log("values",values);
+      // 验证验证码是否正确
+      if(values.checkCode===imgcode.code){
+        //   console.log(imgcode.code);
+          let currentUser=await request('/user/login',{
+            name:values.username,
+            password:password,
+            
+        })
+        console.log("currentUser=",currentUser);
+        if(currentUser.code === 2000){
+            currentUser.username=values.username;
+            localStorage.setItem('currentUser',JSON.stringify(currentUser))
+            // props.login(currentUser.data,values.remember);
+            // 登录跳转
+            props.history.replace('/mine');
+        }else if(currentUser.code === 3000){
+            message.error('用户名或密码错误')
+        }
+      }
+      
+    };
     return(
         <div className="main">
             <div className="login">

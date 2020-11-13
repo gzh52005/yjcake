@@ -48,5 +48,5 @@ function App(props) {
     </div>
   );
 }
-App=withRouter(App);
-export default App;
+const NewApp=withRouter(App);
+export default NewApp;

@@ -1,10 +1,20 @@
 import React,{useEffect,useState} from 'react';
-import { Carousel , Spin } from 'antd';
+import { Carousel , Spin,message } from 'antd';
 import { DoubleRightOutlined} from '@ant-design/icons';
 import request from '../utils/request';
 import '../assets/sass/detail.scss';
+import { Badge } from 'antd';
+let currentUser=localStorage.getItem("currentUser");
+currentUser=JSON.parse(currentUser);
+const username=currentUser.username
+const query={
+    name:username,
+    albuy:"未购",
+}
 function Detail(props){
-    // // console.log("detail-props",props);
+    // console.log("detail-props",props);
+    let currentUser=localStorage.getItem('currentUser');
+    currentUser=JSON.parse(currentUser);
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
     const [detailData,changedetail] = useState();
     useEffect(()=>{
@@ -16,15 +26,17 @@ function Detail(props){
             document.querySelector('.bigImg').innerHTML=res.data[0].wap_description;
         })
     },[goodsId]);
-    const [zindex,changemask] = useState(2);
+    const [zindex,changemask] = useState(-100);
     const [idx,changeidx] = useState(0);
     let [num,changenum] = useState(1);
+    let [cartNum,changecart] = useState(JSON.parse(localStorage.getItem('userCart')).length);
     return(
         <div className="main">
+            <div className="goodsNum"><Badge count={cartNum} offset={[-13, 7]} size="small"></Badge></div>
             <div className="detail">
                 <div className="sweiper">
                     {
-                        // console.log("detailData",detailData?detailData:detailData)
+                        console.log("detailData",detailData?detailData:detailData)
                     }
                     <Carousel autoplay>
                         {
@@ -34,15 +46,12 @@ function Detail(props){
                     </Carousel>
                 </div>
                 <div className="content">
-                    <h1 style={{    color: '#522725',
-                        fontSize: '14px',
-                        margin:' 10px 0',
-                        lineHeight: 1.3,}}>
+                    <h1>
                         {
                             detailData?detailData.name:<Spin />
                         }
                     </h1>
-                    <p className="text"></p>
+                    <div className="text"></div>
                     <div className="choceSpec">
                         <p><label>规格数量选择</label><span className="name">({ detailData?detailData.specs[idx].name:''})</span>x<span className="num">{num}</span></p>
                         <DoubleRightOutlined onClick={()=>{
@@ -52,7 +61,28 @@ function Detail(props){
                     <div className="bigImg"></div>
                 </div>
                 <div className="buyIt">
-                    <button>加入购物车</button>
+                    <button onClick={()=>{
+                        // console.log(currentUser.username,goodsId,num,detailData.specs[idx].id);
+                        request.post('/cart/addcart',{
+                            name:currentUser.username,
+                            id:goodsId,
+                            num:num,
+                            specs_id:detailData.specs[idx].id,
+                        }).then(res=>{
+                            console.log("addgoods",res);
+                            if(res.code===2000){
+                                message.success('已加入购物车');
+                                request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
+                                    // 查询购物车数据
+                                    console.log("查询",res);
+                                    if(res.code===2000){
+                                       localStorage.setItem("userCart",JSON.stringify(res.data));
+                                       changecart(res.data.length);
+                                    } 
+                                })
+                            }
+                        })
+                    }}>加入购物车</button>
                     <button>立即预定</button>
                 </div>
             </div>
@@ -62,11 +92,6 @@ function Detail(props){
                     detailData?detailData.specs[idx].price:<Spin />
                 } 
                 </h1>
-                <p>
-                    {
-                        detailData?<img src={detailData.specs[idx].pic} alt="图片" />:<Spin />
-                    } 
-                </p>
                 <div className="specs">
                     {
                         detailData?detailData.specs.map((item,index)=>
@@ -100,7 +125,7 @@ function Detail(props){
                 </p>
                 <p className="isSure">
                     <span  onClick={()=>{
-                        changemask(-3);
+                        changemask(-100);
                     }}>确定</span>
                 </p>
             </div>

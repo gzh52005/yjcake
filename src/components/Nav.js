@@ -42,5 +42,5 @@ function Nav(props){
       </div>
     )
 }
-Nav=withRouter(Nav);
-export default Nav;
+const NewNav=withRouter(Nav)
+export default NewNav;
