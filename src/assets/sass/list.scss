@@ -1,9 +1,37 @@
 @import './base.scss';
 
 .list{
+    // position: fixed;
+    // top:vw(50);
     overflow: hidden;
+    .active{
+        border-bottom: vw(4) solid #492321;
+        color: #cba7f9;
+    }
+    .listMuen{
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    height: vw(35);
     
+    border-bottom: 1px solid #492321;
+    white-space: nowrap;
+    background: #fff;
+    li{
+    
+    display: inline-block;
+
+    a{
+        height: vw(35);
+        line-height: vw(35);
+        display: inline-block;
+        padding: 0 15px;
+        color: #492321;
+    }
+    }
+    }
     .footer{
+       
         padding: vw(15) 0;
         p{
             color: #8f5451;

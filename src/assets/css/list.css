@@ -19,14 +19,42 @@ a {
   color: #000;
 }
 
+button {
+  border: none;
+  background: none;
+}
+
 .main {
   width: 100%;
-  top: calc(100% - 50px);
-  padding-bottom: 60px;
+  top: calc(100% - vw(50));
+  padding: 13.3333333333vw 0 16vw;
 }
 
 .list {
   overflow: hidden;
+}
+.list .active {
+  border-bottom: 1.0666666667vw solid #492321;
+  color: #cba7f9;
+}
+.list .listMuen {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
+  height: 9.3333333333vw;
+  border-bottom: 1px solid #492321;
+  white-space: nowrap;
+  background: #fff;
+}
+.list .listMuen li {
+  display: inline-block;
+}
+.list .listMuen li a {
+  height: 9.3333333333vw;
+  line-height: 9.3333333333vw;
+  display: inline-block;
+  padding: 0 15px;
+  color: #492321;
 }
 .list .footer {
   padding: 4vw 0;
