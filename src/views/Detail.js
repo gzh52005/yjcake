@@ -4,17 +4,9 @@ import { DoubleRightOutlined} from '@ant-design/icons';
 import request from '../utils/request';
 import '../assets/sass/detail.scss';
 import { Badge } from 'antd';
-let currentUser=localStorage.getItem("currentUser");
-currentUser=JSON.parse(currentUser);
-const username=currentUser.username
-const query={
-    name:username,
-    albuy:"未购",
-}
+import { withUser } from '../utils/hoc';
 function Detail(props){
     // console.log("detail-props",props);
-    let currentUser=localStorage.getItem('currentUser');
-    currentUser=JSON.parse(currentUser);
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
     const [detailData,changedetail] = useState();
     useEffect(()=>{
@@ -29,14 +21,19 @@ function Detail(props){
     const [zindex,changemask] = useState(-100);
     const [idx,changeidx] = useState(0);
     let [num,changenum] = useState(1);
-    let [cartNum,changecart] = useState(JSON.parse(localStorage.getItem('userCart')).length);
+    let [cartNum,changecart] = useState(0);
+    useEffect(()=>{
+        if(props.userCart!=='undefined'){
+            changecart(props.userCart.length);
+        }
+    },[])
     return(
         <div className="main">
-            <div className="goodsNum"><Badge count={cartNum} offset={[-13, 7]} size="small"></Badge></div>
+            <div className="goodsNum"><Badge count={cartNum} offset={[-13, 7]} size="small" showZero></Badge></div>
             <div className="detail">
                 <div className="sweiper">
                     {
-                        console.log("detailData",detailData?detailData:detailData)
+                        // console.log("detailData",detailData?detailData:detailData)
                     }
                     <Carousel autoplay>
                         {
@@ -62,26 +59,35 @@ function Detail(props){
                 </div>
                 <div className="buyIt">
                     <button onClick={()=>{
-                        // console.log(currentUser.username,goodsId,num,detailData.specs[idx].id);
-                        request.post('/cart/addcart',{
-                            name:currentUser.username,
-                            id:goodsId,
-                            num:num,
-                            specs_id:detailData.specs[idx].id,
-                        }).then(res=>{
-                            console.log("addgoods",res);
-                            if(res.code===2000){
-                                message.success('已加入购物车');
-                                request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
-                                    // 查询购物车数据
-                                    console.log("查询",res);
-                                    if(res.code===2000){
-                                       localStorage.setItem("userCart",JSON.stringify(res.data));
-                                       changecart(res.data.length);
-                                    } 
-                                })
-                            }
-                        })
+                        // console.log(props.currentUser.username,goodsId,num,detailData.specs[idx].id);
+                        if(props.currentUser){
+                            request.post('/cart/addcart',{
+                                name:props.currentUser.username,
+                                id:goodsId,
+                                num:num,
+                                specs_id:detailData.specs[idx].id,
+                            }).then(res=>{
+                                // console.log("addgoods",res);
+                                if(res.code===2000){
+                                    message.success('已加入购物车');
+                                    const query={
+                                        name:props.currentUser.username,
+                                        albuy:"未购",
+                                    }
+                                    request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
+                                        // 查询购物车数据
+                                        // console.log("查询",res);
+                                        if(res.code===2000){
+                                           localStorage.setItem("userCart",JSON.stringify(res.data));
+                                           changecart(res.data.length);
+                                        } 
+                                    })
+                                }
+                            })
+                        }else{
+                            message.warning('请先登录同步购物车！');
+                            props.history.push('/login');
+                        }
                     }}>加入购物车</button>
                     <button>立即预定</button>
                 </div>
@@ -132,5 +138,5 @@ function Detail(props){
         </div>
     )
 }
-
-export default Detail;
+const Newdetail=withUser(Detail)
+export default Newdetail;

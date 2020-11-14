@@ -6,27 +6,39 @@ import {
     DeleteOutlined,
 } from '@ant-design/icons';
 import '../assets/sass/cart.scss';
-
-let currentUser=localStorage.getItem("currentUser");
-currentUser=JSON.parse(currentUser);
-const username=currentUser.username
-const query={
-    name:username,
-    albuy:"未购",
-}
 function Cart(props){
+    // console.log("cart-props",props);
+    // let [query,changequery]=useState();
+    // useEffect(()=>{
+    //     if(props.currentUser){
+    //         changequery(query={
+    //             name:props.currentUser.username,
+    //             albuy:"未购",
+    //         })
+            
+    //     }
+    // },[props.currentUser])
     let [inputIdx,changeinput]=useState(false);
     let [totalInput,changeToatl]=useState(false);
-    let [userCart,changecart]=useState();
+    
     let [goodsnum,changenum]=useState(false);
     let [isdelete,setDelete]=useState(false);
     let [totalMoney,changeMoney]=useState('0.00');
+    let [userCart,changecart]=useState();
+    let query={
+                name:props.currentUser.username,
+                albuy:"未购",
+            }
     useEffect(()=>{
-        request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
-            if(res){
-                changecart(res.data);
-            } 
-        })
+        if(props.currentUser){
+            request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
+                if(res){
+                    changecart(res.data);
+                    localStorage.setItem('userCart',JSON.stringify(res.data));
+                } 
+            })
+            
+        }
         
     },[]);
 
@@ -91,7 +103,7 @@ function Cart(props){
             }
             // console.log(userCart,goodsId);
             request.delete('/cart/delcart',{_id:goodsId}).then(res=>{
-                console.log("删除",res);
+                // console.log("删除",res);
                 if(res.code===2000){
                     message.success('删除成功');
                     // 删除成功,重新渲染购物车数据

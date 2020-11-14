@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import request from '../utils/request';
 import {withRouter} from 'react-router-dom';
-
+import {withUser} from '../utils/hoc';
 import '../assets/sass/header.scss';
 import { Badge } from 'antd';
 import {
@@ -15,8 +15,12 @@ function Header(props){
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
     const [titleName, setData] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    let [cartNum,changenum]=useState(JSON.parse(localStorage.getItem('userCart')).length);
-    console.log(cartNum);
+    let [cartNum,changenum]=useState(0);
+    useEffect(()=>{
+        if(props.userCart!=='undefined'){
+            changenum(props.userCart.length);
+        }
+    },[props.userCart])
     useEffect(() => {
         const fetchData = async()=>{
             setIsLoading(true);
@@ -35,7 +39,6 @@ function Header(props){
         
         }
         fetchData();
-        changenum(JSON.parse(localStorage.getItem('userCart')).length)
     },[goodsId,address]); 
     return(
         <div className="header">
@@ -77,10 +80,11 @@ function Header(props){
                         props.history.push('/cart');
                     }} />
                 }
-                <Badge count={cartNum} offset={[-3, -18]} size="small"></Badge>
+                <Badge count={cartNum} offset={[-3, -18]} size="small" showZero></Badge>
             </div>
         </div>
     )
 }
 const NewHeader=withRouter(Header);
-export default NewHeader;
+const Myheader=withUser(NewHeader)
+export default Myheader;

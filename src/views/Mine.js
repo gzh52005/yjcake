@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useState} from 'react';
 import {withUser,withToken} from '../utils/hoc';
 import '../assets/sass/mine.scss';
 
@@ -14,7 +14,6 @@ import {
 function Mine(props){
     // console.log("mine-props",props);
     const [zindex,changemask] = useState(-1000);
-    const [username,changename]=useState(props.currentUser.username);
     return(
         <div className="main">
             <div className="mine">
@@ -24,7 +23,7 @@ function Mine(props){
                     </div>
                     <div className="memberContent">
                         <div>
-                            <p><UserOutlined />昵称：{username}</p>
+                            <p><UserOutlined />昵称：{props.currentUser.username}</p>
                             <p><PhoneOutlined />手机：</p>
                             <p><DollarOutlined />余额：0.00</p>
                             <p><TrophyOutlined />付费等级：暂无</p>
