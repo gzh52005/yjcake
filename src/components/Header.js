@@ -61,7 +61,7 @@ function Header(props){
                 {
                     props.location.pathname==='/'||props.location.pathname==='/home'?
                         <img src="http://img.maixiaobu.cn/yujian-anyang/fixed/20181226/3ff9703e5be78449.png"  alt="" />:
-                        props.location.pathname==='/list'?<span>蛋糕名录</span>:
+                        props.location.pathname.split('/')[1]==='list'?<span>蛋糕名录</span>:
                         props.location.pathname==='/cart'?<span>购物车</span>:
                         props.location.pathname==='/order'?<span>我的订单</span>:
                         props.location.pathname==='/login'?<span>登录</span>:props.location.pathname==='/reg'?<span>注册</span>:
