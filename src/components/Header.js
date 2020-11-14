@@ -16,11 +16,11 @@ function Header(props){
     const [titleName, setData] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     let [cartNum,changenum]=useState(0);
-    useEffect(()=>{
-        if(props.userCart!=='undefined'){
-            changenum(props.userCart.length);
-        }
-    },[props.userCart])
+    let query={
+        name:props.currentUser?props.currentUser.username:'',
+        albuy:"未购",
+    }
+    
     useEffect(() => {
         const fetchData = async()=>{
             setIsLoading(true);
@@ -36,7 +36,10 @@ function Header(props){
                 setData('Loading...');
                 setIsLoading(false);
             }
-        
+            const cart=await request('/cart/findAll',{query:JSON.stringify(query)});
+            if(cart.code===2000){
+                changenum(cart.data.length);
+            }
         }
         fetchData();
     },[goodsId,address]); 
@@ -76,11 +79,11 @@ function Header(props){
             </div>
             <div className="icons-list">
                 {
-                    props.location.pathname==='/login'||props.location.pathname==='/reg'?<span></span>:<ShoppingCartOutlined onClick={()=>{
+                    props.location.pathname==='/login'||props.location.pathname==='/reg'?<span></span>:<div><ShoppingCartOutlined onClick={()=>{
                         props.history.push('/cart');
-                    }} />
+                    }} /><Badge count={cartNum} offset={[-3, -18]} size="small" showZero></Badge></div>
                 }
-                <Badge count={cartNum} offset={[-3, -18]} size="small" showZero></Badge>
+                
             </div>
         </div>
     )

@@ -23,7 +23,7 @@ function Mine(props){
                     </div>
                     <div className="memberContent">
                         <div>
-                            <p><UserOutlined />昵称：{props.currentUser.username}</p>
+                            <p><UserOutlined />昵称：{props.currentUser?props.currentUser.username:''}</p>
                             <p><PhoneOutlined />手机：</p>
                             <p><DollarOutlined />余额：0.00</p>
                             <p><TrophyOutlined />付费等级：暂无</p>

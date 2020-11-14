@@ -19,17 +19,17 @@ export function withUser(InnerComponent){
     return function OuterComponent(props){
         // console.log('OuterComponent.props=',props);
         const data=localStorage.getItem('currentUser');
-        const cart=localStorage.getItem('userCart');
+        // const cart=localStorage.getItem('userCart');
         let currentUser;
-        let userCart;
+        // let userCart;
         try{
             currentUser=JSON.parse(data);
-            userCart=JSON.parse(cart);
+            // userCart=JSON.parse(cart);
         }catch(err){
             currentUser=data;
-            userCart=cart;
+            // userCart=cart;
         }
-        return <InnerComponent {...props} currentUser={currentUser} userCart={userCart}/>
+        return <InnerComponent {...props} currentUser={currentUser}/>
     }
 }
 // 加强版：属性代理(无论传什么参数都可获取，传key(currentUser)得key(currentUser))

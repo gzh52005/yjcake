@@ -21,15 +21,12 @@ function Detail(props){
     const [zindex,changemask] = useState(-100);
     const [idx,changeidx] = useState(0);
     let [num,changenum] = useState(1);
-    let [cartNum,changecart] = useState(0);
-    useEffect(()=>{
-        if(props.userCart!=='undefined'){
-            changecart(props.userCart.length);
-        }
-    },[])
+    let [cartNum,changecart] = useState(JSON.parse(localStorage.getItem('userCart'))?JSON.parse(localStorage.getItem('userCart')).length:0);
     return(
         <div className="main">
-            <div className="goodsNum"><Badge count={cartNum} offset={[-13, 7]} size="small" showZero></Badge></div>
+            <div className="goodsNum">
+                <Badge count={cartNum} offset={[-13, 7]} size="small" showZero></Badge>
+            </div>
             <div className="detail">
                 <div className="sweiper">
                     {

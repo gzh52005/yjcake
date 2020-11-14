@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { message} from 'antd';
+import { message, Spin} from 'antd';
 import {withUser,withToken} from '../utils/hoc';
 import request from '../utils/request';
 import {
@@ -26,20 +26,19 @@ function Cart(props){
     let [totalMoney,changeMoney]=useState('0.00');
     let [userCart,changecart]=useState();
     let query={
-                name:props.currentUser.username,
-                albuy:"未购",
-            }
+        name:props.currentUser?props.currentUser.username:'',
+        albuy:"未购",
+    }
     useEffect(()=>{
-        if(props.currentUser){
-            request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
-                if(res){
-                    changecart(res.data);
-                    localStorage.setItem('userCart',JSON.stringify(res.data));
-                } 
-            })
-            
+        const fetchData = async()=>{
+            const cart=await request('/cart/findAll',{query:JSON.stringify(query)});
+            if(cart.code===2000){
+                changecart(cart.data);
+                localStorage.setItem('userCart',JSON.stringify(cart.data)); 
+            }
         }
-        
+        fetchData();
+           
     },[]);
 
     useEffect(()=>{
@@ -120,6 +119,8 @@ function Cart(props){
             })
         }
     },[isdelete,userCart])
+    
+    
     return(
         <div className="main">
             <div className="icon-list" onClick={()=>{
