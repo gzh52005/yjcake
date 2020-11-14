@@ -86,7 +86,25 @@ function Detail(props){
                             props.history.push('/login');
                         }
                     }}>加入购物车</button>
-                    <button>立即预定</button>
+                    <button onClick={()=>{
+                        if(props.currentUser){
+                            request.post('/cart/buy',{
+                                name:props.currentUser.username,
+                                id:goodsId,
+                                num:num,
+                                specs_id:detailData.specs[idx].id,
+                            }).then(res=>{
+                                console.log("addgoods",res);
+                                if(res.code===2000){
+                                    message.success('购买成功');
+                                    
+                                }
+                            })
+                        }else{
+                            message.warning('请先登录同步购物车！');
+                            props.history.push('/login');
+                        }
+                    }}>立即预定</button>
                 </div>
             </div>
             <div className="mask" style={{zIndex:zindex}}>

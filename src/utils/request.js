@@ -48,4 +48,13 @@ function request(url,data,options={}){
         })
         return request(url,data,options);
     }
+
+    request.put = function(url,data={},options={}){
+        options.method = 'put';
+        options.body = JSON.stringify(data)
+        options.headers= new Headers({
+            'Content-Type': 'application/json'
+        })
+        return request(url,data,options);
+    }
 export default request;
