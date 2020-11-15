@@ -2,6 +2,8 @@ import React,{useEffect, useState} from 'react';
 import {ShoppingCartOutlined} from '@ant-design/icons';
 import request from '../../utils/request';
 import '../../assets/sass/findMore.scss';
+import { withUser } from '../../utils/hoc';
+import { message } from 'antd';
  function MoreOne(props){
    //  console.log(props);
   let isScroll=true;
@@ -10,6 +12,35 @@ import '../../assets/sass/findMore.scss';
   const [NUM,newNum]=useState(1);
   const [isContinue,changIt]=useState(true);
 //   const [isLoad,changLoad]=useState(false)
+ const addToCart=(goodsId,specs_id,)=>{
+  
+  console.log(11);
+  if(props.currentUser){
+    request.post('/cart/addcart',{
+        name:props.currentUser.username,
+        id:goodsId,
+        num:1,
+        specs_id:specs_id,
+    }).then(res=>{
+        // console.log("addgoods",res);
+        if(res.code===2000){
+            message.success('已加入购物车');
+            const query={
+                name:props.currentUser.username,
+                albuy:"未购",
+            }
+            request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
+                if(res.code===2000){
+                   localStorage.setItem("userCart",JSON.stringify(res.data));
+                } 
+            })
+        }
+    })
+}else{
+  message.warning('亲，请先登录再购物！祝您生活愉快');
+  // props.history.push('/login');
+}
+ }
   useEffect(async()=>{
      let timer = null;
      window.addEventListener('scroll',()=>{
@@ -43,9 +74,10 @@ import '../../assets/sass/findMore.scss';
 
              list.map(item=>
               <li key={item.id} 
-              onClick={()=>{
+              onClick={(e)=>{
+                
                console.log(12);
-               props.history.push(`/detail/${item.id}`);
+              //  props.history.push(`/detail/${item.id}`);
           }}>
                 <img src={item.cover.wap_cover}></img>
              <p className="name">{item.name.replace(/\w/gi,'')}</p>
@@ -57,7 +89,10 @@ import '../../assets/sass/findMore.scss';
              <label>￥{item.specs?item.specs[0].price:"118.00"}</label>
                    <label>{item.specs?item.specs[0].name:"1.0磅（14*14cm）"}</label>
                    </p>
-                   <div className="anticon-addCart">
+                   <div className="anticon-addCart" 
+                   onClick={(e)=>{
+                     e.stopPropagation()
+                    addToCart(item.id,item.specs[0].id)}}>
                    <ShoppingCartOutlined style={{fontSize: 20,color: "#492321"}}/>
                    </div>
                  </div>
@@ -77,4 +112,5 @@ import '../../assets/sass/findMore.scss';
          </div>
      )
  }
-export default MoreOne;
+ const newOne=withUser(MoreOne)
+export default newOne;
