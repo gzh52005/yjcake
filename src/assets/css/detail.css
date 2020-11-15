@@ -38,6 +38,9 @@ button {
   z-index: 1000;
 }
 
+.detail .sweiper img {
+  height: 100vw;
+}
 .detail .content {
   padding: 0 4vw 5.3333333333vw;
   background: #fff;
@@ -130,6 +133,16 @@ button {
   border: 0.2666666667vw solid #753724;
   position: relative;
   padding: 2.1333333333vw 4vw;
+}
+.mask .specs .defalut1:nth-of-type(1)::after {
+  content: "√";
+  position: absolute;
+  color: #fff;
+  background: #753724;
+  padding: 0.5333333333vw 1.3333333333vw;
+  left: -0.8vw;
+  top: -0.8vw;
+  transform: scale(0.7);
 }
 .mask .specs .chocespec::after {
   content: "√";
