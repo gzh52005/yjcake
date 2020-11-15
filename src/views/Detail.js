@@ -9,9 +9,11 @@ function Detail(props){
     // console.log("detail-props",props);
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
     const [detailData,changedetail] = useState();
+    console.log(goodsId);
     useEffect(()=>{
         // 这里的代码在组件渲染结束后执行（初始化和组件更新）
         // 发起请求
+
         request(`/goodslist/getgood/${goodsId}`).then(res=>{
             changedetail(...(res.data))
             document.querySelector('.text').innerHTML=res.data[0].describe;
@@ -21,7 +23,7 @@ function Detail(props){
     const [zindex,changemask] = useState(-100);
     const [idx,changeidx] = useState(0);
     let [num,changenum] = useState(1);
-    let [cartNum,changecart] = useState(JSON.parse(localStorage.getItem('userCart'))?JSON.parse(localStorage.getItem('userCart')).length:0);
+    let [cartNum,changecart] = useState(localStorage.getItem('userCart')!='undefined'?JSON.parse(localStorage.getItem('userCart')).length:0);
     return(
         <div className="main">
             <div className="goodsNum">
