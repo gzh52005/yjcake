@@ -9,7 +9,7 @@ function Detail(props){
     // console.log("detail-props",props);
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
     const [detailData,changedetail] = useState();
-    console.log(goodsId);
+    // console.log(goodsId);
     useEffect(()=>{
         // 这里的代码在组件渲染结束后执行（初始化和组件更新）
         // 发起请求
@@ -118,10 +118,11 @@ function Detail(props){
                 <div className="specs">
                     {
                         detailData?detailData.specs.map((item,index)=>
-                            <span className="specName" key={item.id} onClick={()=>{
+                            <span className="specName defalut1" key={item.id} onClick={()=>{
                                 changeidx(index);
                                 document.querySelectorAll('.specName').forEach(item=>{
                                     item.classList.remove('chocespec');
+                                    item.classList.remove('defalut1');
                                 })
                                 document.querySelectorAll('.specName')[index].classList.add('chocespec');
                             }}>

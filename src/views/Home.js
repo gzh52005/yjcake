@@ -46,7 +46,7 @@ function Home(props){
                 </div>
                 <div className="adPic">
                     {
-                        console.log("listdata",listdata)
+                        // console.log("listdata",listdata)
                     }
                    {
                        listdata.map(item=><img src={item.pic} key={item._id} alt="图片" onClick={()=>{

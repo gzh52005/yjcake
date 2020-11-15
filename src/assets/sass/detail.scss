@@ -6,6 +6,11 @@
     z-index: 1000;
 }
 .detail{
+    .sweiper{
+        img{
+            height: vw(375);
+        }
+    }
     .content{
         padding: 0 vw(15) vw(20);
         background: #fff;
@@ -98,6 +103,16 @@
             border: vw(1) solid #753724;
             position: relative;
             padding: vw(8) vw(15);
+        }
+        .defalut1:nth-of-type(1)::after{
+            content: "\221A";
+            position: absolute;
+            color: #fff;
+            background: #753724;
+            padding: vw(2) vw(5);
+            left: vw(-3);
+            top: vw(-3);
+            transform: scale(.7);
         }
         .chocespec::after{
             content: "\221A";
