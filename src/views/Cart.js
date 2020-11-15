@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { message, Spin} from 'antd';
+import { message } from 'antd';
 import {withUser,withToken} from '../utils/hoc';
 import request from '../utils/request';
 import {
@@ -23,6 +23,7 @@ function Cart(props){
     
     let [goodsnum,changenum]=useState(false);
     let [isdelete,setDelete]=useState(false);
+    let [isBuy,setBuy]=useState(false);
     let [totalMoney,changeMoney]=useState('0.00');
     let [userCart,changecart]=useState();
     let query={
@@ -101,35 +102,47 @@ function Cart(props){
                 }
             }
             // console.log(userCart,goodsId);
-            request.delete('/cart/delcart',{_id:goodsId}).then(res=>{
-                // console.log("删除",res);
-                if(res.code===2000){
-                    message.success('删除成功');
-                    // 删除成功,重新渲染购物车数据
-                    request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
-                        localStorage.setItem("userCart",JSON.stringify(res.data));
-                        // 查询购物车数据
-                        console.log("查询",res);
-                        if(res){
-                            changecart(res.data);
-                            changeMoney('0.00');
-                        } 
-                    })
-                }
-            })
+            if(isBuy){
+                request.put('/cart/albuy',{_id:goodsId}).then(res=>{
+                    console.log(res);
+                    if(res.code===2000){
+                        setBuy(false);
+                        message.success('购买成功!');
+                        setDelete(true);
+                    }
+                })
+            }
+            if(isdelete){
+                request.delete('/cart/delcart',{_id:goodsId}).then(res=>{
+                    // console.log("删除",res);
+                    if(res.code===2000){
+                        message.success('已移除');
+                        setDelete(false);
+                        // 删除成功,重新渲染购物车数据
+                        request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
+                            localStorage.setItem("userCart",JSON.stringify(res.data));
+                            // 查询购物车数据
+                            console.log("查询",res);
+                            if(res){
+                                changecart(res.data);
+                                changeMoney('0.00');
+                            } 
+                        })
+                    }
+                })
+            }
         }
-    },[isdelete,userCart])
-    
+    },[isdelete,userCart,isBuy])
     
     return(
         <div className="main">
             <div className="icon-list" onClick={()=>{
                 console.log("delete");
-                setDelete(!isdelete);
+                setDelete(true);
             }} ><DeleteOutlined/></div>
             <ul className="cartItems">
                 {
-                    console.log("userCart",userCart)
+                    // console.log("userCart",userCart)
                 }
                 {
                     userCart?userCart.map((item,index)=><li key={item._id}>
@@ -206,7 +219,10 @@ function Cart(props){
                     }} />
                     <span className="totalPrice">商品总价:￥{totalMoney}</span>
                 </div>
-                <div className="gobuy">
+                <div className="gobuy" onClick={()=>{
+                    console.log("buy");
+                    setBuy(true);
+                }}>
                     <span>去结算</span>
                 </div>
             </div>

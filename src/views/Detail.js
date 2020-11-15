@@ -9,9 +9,11 @@ function Detail(props){
     // console.log("detail-props",props);
     const goodsId=props.location.pathname.split('/').slice(-1)[0];
     const [detailData,changedetail] = useState();
+    // console.log(goodsId);
     useEffect(()=>{
         // 这里的代码在组件渲染结束后执行（初始化和组件更新）
         // 发起请求
+
         request(`/goodslist/getgood/${goodsId}`).then(res=>{
             changedetail(...(res.data))
             document.querySelector('.text').innerHTML=res.data[0].describe;
@@ -21,7 +23,7 @@ function Detail(props){
     const [zindex,changemask] = useState(-100);
     const [idx,changeidx] = useState(0);
     let [num,changenum] = useState(1);
-    let [cartNum,changecart] = useState(JSON.parse(localStorage.getItem('userCart'))?JSON.parse(localStorage.getItem('userCart')).length:0);
+    let [cartNum,changecart] = useState(localStorage.getItem('userCart')!='undefined'?JSON.parse(localStorage.getItem('userCart')).length:0);
     return(
         <div className="main">
             <div className="goodsNum">
@@ -86,7 +88,25 @@ function Detail(props){
                             props.history.push('/login');
                         }
                     }}>加入购物车</button>
-                    <button>立即预定</button>
+                    <button onClick={()=>{
+                        if(props.currentUser){
+                            request.post('/cart/buy',{
+                                name:props.currentUser.username,
+                                id:goodsId,
+                                num:num,
+                                specs_id:detailData.specs[idx].id,
+                            }).then(res=>{
+                                console.log("addgoods",res);
+                                if(res.code===2000){
+                                    message.success('购买成功');
+                                    
+                                }
+                            })
+                        }else{
+                            message.warning('请先登录同步购物车！');
+                            props.history.push('/login');
+                        }
+                    }}>立即预定</button>
                 </div>
             </div>
             <div className="mask" style={{zIndex:zindex}}>
@@ -98,10 +118,11 @@ function Detail(props){
                 <div className="specs">
                     {
                         detailData?detailData.specs.map((item,index)=>
-                            <span className="specName" key={item.id} onClick={()=>{
+                            <span className="specName defalut1" key={item.id} onClick={()=>{
                                 changeidx(index);
                                 document.querySelectorAll('.specName').forEach(item=>{
                                     item.classList.remove('chocespec');
+                                    item.classList.remove('defalut1');
                                 })
                                 document.querySelectorAll('.specName')[index].classList.add('chocespec');
                             }}>

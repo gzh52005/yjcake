@@ -27,6 +27,9 @@ function Home(props){
         <div className="main">
             <div className="home">
                 <div className="sweiper">
+                    {
+                        // console.log(slideData)
+                    }
                     <Carousel autoplay style={{touchAction: 'none'}} >
                         {
                             slideData.slice(0,5).map(item=><img src={item.pic_link} key={item._id} alt="图片" onClick={()=>{
@@ -42,9 +45,12 @@ function Home(props){
                     </Carousel>
                 </div>
                 <div className="adPic">
+                    {
+                        // console.log("listdata",listdata)
+                    }
                    {
                        listdata.map(item=><img src={item.pic} key={item._id} alt="图片" onClick={()=>{
-                            props.history.push(`/list`);
+                            props.history.push(`/list/${item.id}`);
                        }} />
                        )
                    }

@@ -117,6 +117,11 @@ function Reg(props){
                         >
                         注册
                         </Button>
+                        <Button size="small"  style={{marginLeft:"15px"}} onClick={()=>{
+                            props.history.push('/login');
+                        }}>
+                        登录
+                        </Button>
                     </Form.Item>
                 </Form>
 
