@@ -60,10 +60,11 @@ function Order(props){
             let isChecked=document.querySelectorAll('.isChecked');
             let allChecked=document.querySelector('.allChecked');
             let isChecked1=[...isChecked];
-            console.log(isChecked1);
+            // console.log(isChecked1);
           let isChecked2 = isChecked1.every(item=>{
-                return item.checked!=true;
+                return item.checked==true;
             });
+            console.log(isChecked2);
             if(isChecked2){
                 allChecked.checked=true;
             }else{
@@ -105,7 +106,9 @@ function Order(props){
               }
             </p>
             <input type="checkbox" 
-            _id={item._id}
+            _id={item._id}onClick={()=>{
+                changeChecked(!isChecked)
+            }}
             className="isChecked" />
             <button onClick={()=>{
                  request.delete('/cart/delcart',{_id:[item._id]}).then(res=>{
@@ -114,7 +117,7 @@ function Order(props){
                     changIsDel(!isDel)
                             }
                         })
-                        changeChecked(!isChecked)
+                        
             }}>
                 确认送达
             </button>
