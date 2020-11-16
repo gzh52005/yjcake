@@ -28,7 +28,7 @@ function Home(props){
             <div className="home">
                 <div className="sweiper">
                     {
-                        // console.log(slideData)
+                        // console.log("slideData",slideData)
                     }
                     <Carousel autoplay style={{touchAction: 'none'}} >
                         {
@@ -37,7 +37,7 @@ function Home(props){
                                 if(item.skip_link){
                                     props.history.push(`/detail/${item.skip_link}`);
                                 }else{
-                                    props.history.replace('/');
+                                    props.history.replace('/home');
                                 }
                             }} />
                             )

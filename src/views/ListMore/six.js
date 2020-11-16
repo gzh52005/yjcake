@@ -3,7 +3,7 @@ import {ShoppingCartOutlined} from '@ant-design/icons';
 import request from '../../utils/request';
 import '../../assets/sass/findMore.scss';
 import { withUser } from '../../utils/hoc';
-import { message } from 'antd';
+import { message ,Badge} from 'antd';
  function MoreOne(props){
    //  console.log(props);
   let isScroll=true;
@@ -11,6 +11,7 @@ import { message } from 'antd';
   const [list,moreData]=useState([]);
   const [NUM,newNum]=useState(1);
   const [isContinue,changIt]=useState(true);
+  let [cartNum,changecart] = useState(localStorage.getItem('userCart')!='undefined'?JSON.parse(localStorage.getItem('userCart')).length:0);
 //   const [isLoad,changLoad]=useState(false)
  const addToCart=(goodsId,specs_id,)=>{
   if(props.currentUser){
@@ -29,6 +30,7 @@ import { message } from 'antd';
             request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
                 if(res.code===2000){
                    localStorage.setItem("userCart",JSON.stringify(res.data));
+                   changecart(res.data.length);
                   //  window.location.reload()
                 } 
             })
@@ -69,6 +71,9 @@ import { message } from 'antd';
    },[NUM])
      return(
          <div id="box">
+           <div className="goodsNum">
+                <Badge count={cartNum} offset={[-13, 7]} size="small" showZero></Badge>
+            </div>
            <ul className="list">
              { 
 

@@ -31,7 +31,8 @@ button {
 }
 
 .icon-list {
-  width: 10.6666666667vw;
+  width: 26.6666666667vw;
+  text-align: right;
   font-size: 6.1333333333vw;
   position: fixed;
   top: 1.8666666667vw;
