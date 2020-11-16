@@ -36,9 +36,11 @@ function Order(props){
         .then(res=>{
            if(res.data){
             moreData([...res.data])
+           }else{
+            moreData([])
            }
         });
-    },[isDel])
+    },[isDel,isDel])
     useEffect(()=>{
        if(document.querySelectorAll('.isChecked').length){
            let isChecked=document.querySelectorAll('.isChecked');

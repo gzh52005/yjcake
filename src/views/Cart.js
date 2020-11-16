@@ -36,6 +36,10 @@ function Cart(props){
             if(cart.code===2000){
                 changecart(cart.data);
                 localStorage.setItem('userCart',JSON.stringify(cart.data)); 
+            }else if(cart.code==3000){
+                changecart(cart.data);
+                localStorage.setItem('userCart',JSON.stringify(cart.data)); 
+                changeMoney("0.00")
             }
         }
         fetchData();

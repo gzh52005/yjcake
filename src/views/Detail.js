@@ -60,7 +60,7 @@ function Detail(props){
                     <button onClick={()=>{
                         // console.log(props.currentUser.username,goodsId,num,detailData.specs[idx].id);
                         if(props.currentUser){
-                            request.post('/cart/addcart',{
+                            request.post('/cart/addcart1',{
                                 name:props.currentUser.username,
                                 id:goodsId,
                                 num:num,

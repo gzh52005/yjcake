@@ -37,6 +37,11 @@ button {
   border-bottom: 1.0666666667vw solid #492321;
   color: #cba7f9;
 }
+.list nav {
+  position: fixed;
+  top: 13.328vw;
+  z-index: 10;
+}
 .list .listMuen {
   width: 100%;
   overflow: hidden;

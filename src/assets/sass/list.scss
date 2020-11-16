@@ -8,6 +8,11 @@
         border-bottom: vw(4) solid #492321;
         color: #cba7f9;
     }
+    nav{
+        position: fixed;
+        top:vw(49.98);
+        z-index: 10;
+    }
     .listMuen{
     width: 100%;
     overflow: hidden;

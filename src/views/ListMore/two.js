@@ -15,7 +15,7 @@ import { message ,Badge} from 'antd';
 //   const [isLoad,changLoad]=useState(false)
  const addToCart=(goodsId,specs_id,)=>{
   if(props.currentUser){
-    request.post('/cart/addcart',{
+    request.post('/cart/addcart1',{
         name:props.currentUser.username,
         id:goodsId,
         num:1,
@@ -61,7 +61,7 @@ import { message ,Badge} from 'antd';
          pageSize:8,
          query
      })
-     console.log("dataList",dataList);
+    //  console.log("dataList",dataList);
      if(dataList.flag){
      moreData([...list,...dataList.data])
      }else{
