@@ -13,8 +13,6 @@ import { message } from 'antd';
   const [isContinue,changIt]=useState(true);
 //   const [isLoad,changLoad]=useState(false)
  const addToCart=(goodsId,specs_id,)=>{
-  
-  console.log(11);
   if(props.currentUser){
     request.post('/cart/addcart',{
         name:props.currentUser.username,
@@ -22,7 +20,6 @@ import { message } from 'antd';
         num:1,
         specs_id:specs_id,
     }).then(res=>{
-        // console.log("addgoods",res);
         if(res.code===2000){
             message.success('已加入购物车');
             const query={
@@ -32,6 +29,7 @@ import { message } from 'antd';
             request('/cart/findAll',{query:JSON.stringify(query)}).then(res=>{
                 if(res.code===2000){
                    localStorage.setItem("userCart",JSON.stringify(res.data));
+                  //  window.location.reload()
                 } 
             })
         }
@@ -47,7 +45,7 @@ import { message } from 'antd';
       let scrollTop  = document.documentElement.scrollTop;
       let clientHeight = document.documentElement.clientHeight;
       let scrollHeight =document.documentElement.scrollHeight;
-      isScroll=scrollTop+clientHeight+600>=scrollHeight?true:false;
+      isScroll=scrollTop+clientHeight+350>=scrollHeight?true:false;
       if(!timer&&isScroll){
          timer=setTimeout(()=>{
                newNum(NUM+1);
@@ -74,10 +72,9 @@ import { message } from 'antd';
 
              list.map(item=>
               <li key={item.id} 
-              onClick={(e)=>{
-                
-               console.log(12);
-              //  props.history.push(`/detail/${item.id}`);
+              onClick={()=>{
+              //  console.log(12);
+               props.history.push(`/detail/${item.id}`);
           }}>
                 <img src={item.cover.wap_cover}></img>
              <p className="name">{item.name.replace(/\w/gi,'')}</p>
