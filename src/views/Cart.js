@@ -40,7 +40,7 @@ function Cart(props){
         }
         fetchData();
            
-    },[]);
+    },[isBuy]);
 
     useEffect(()=>{
         let total1=0;
@@ -108,7 +108,7 @@ function Cart(props){
                     if(res.code===2000){
                         setBuy(false);
                         message.success('购买成功!');
-                        setDelete(true);
+
                     }
                 })
             }
