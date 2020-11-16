@@ -7,6 +7,7 @@ function Order(props){
     const [list,moreData]=useState([]);
     const [allSure,changeAllSure]=useState(false);;
     const [isDel,changIsDel]=useState(false);
+    const [isChecked,changeChecked]=useState(false);
     const someDel=()=>{
         if(document.querySelectorAll('.isChecked').length){
             let isChecked=document.querySelectorAll('.isChecked');
@@ -21,6 +22,7 @@ function Order(props){
             request.delete('/cart/delcart',{_id:goodsId}).then(res=>{
                 if(res.code===2000){
                     message.success('勾选订单已确认收货');
+                    changIsDel(!isDel)
                 }
             })
         }
@@ -41,7 +43,6 @@ function Order(props){
        if(document.querySelectorAll('.isChecked').length){
            let isChecked=document.querySelectorAll('.isChecked');
            let allChecked=document.querySelector('.allChecked');
-        //    console.log(isChecked,allChecked);
            if(allChecked.checked){
             for(let i=0;i<isChecked.length;i++){
                 isChecked[i].checked=true;
@@ -54,6 +55,22 @@ function Order(props){
         }
        }
     },[allSure])
+    useEffect(()=>{
+        if(document.querySelectorAll('.isChecked').length){
+            let isChecked=document.querySelectorAll('.isChecked');
+            let allChecked=document.querySelector('.allChecked');
+            let isChecked1=[...isChecked];
+            console.log(isChecked1);
+          let isChecked2 = isChecked1.every(item=>{
+                return item.checked!=true;
+            });
+            if(isChecked2){
+                allChecked.checked=true;
+            }else{
+                allChecked.checked=false;
+            }
+        }
+    },[isChecked])
     return(
         <div id="box">
         <div id="top">
@@ -94,9 +111,10 @@ function Order(props){
                  request.delete('/cart/delcart',{_id:[item._id]}).then(res=>{
                     if(res.code===2000){
                     message.success('已确认收货');
+                    changIsDel(!isDel)
                             }
                         })
-                        changIsDel(!isDel)
+                        changeChecked(!isChecked)
             }}>
                 确认送达
             </button>
@@ -114,7 +132,7 @@ function Order(props){
         </span>
        <button onClick={()=>{
            someDel();
-           changIsDel(!isDel)
+          
        }}>
            确认送达
        </button>
