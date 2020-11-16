@@ -68,15 +68,16 @@ ul{
 }
 }
 .bottom{
-    position: absolute;
+    position: fixed;
     z-index: 11;
-    bottom:vw(60);
+    bottom:vw(56);
     width: 100%;
+    height: vw(60);
+    background-color: #58bc58;
 button{
     position: absolute;
     bottom: 0;
     right: 0;
-   background: #7b4342;
    height: vw(40);
    line-height: vw(40);
    background: #cba7f9;
@@ -88,12 +89,16 @@ button{
    display: inline-block;
     }
     input{
-        margin-left: 10%;
+        position: absolute;
+        bottom: 3%;
+        left: 10%;
     }
     span{
-        margin-left: 3%;
-        font-size: vw(10);
-        line-height: vw(10);
+        position: absolute;
+        bottom: 3%;
+        left: 20%;
+        font-size: vw(15);
+        line-height: vw(15);
         color: #9a5b57;
     }
 }

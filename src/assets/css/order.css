@@ -63,16 +63,17 @@
   display: inline-block;
 }
 #box .bottom {
-  position: absolute;
+  position: fixed;
   z-index: 11;
-  bottom: 16vw;
+  bottom: 14.9333333333vw;
   width: 100%;
+  height: 16vw;
+  background-color: #58bc58;
 }
 #box .bottom button {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: #7b4342;
   height: 10.6666666667vw;
   line-height: 10.6666666667vw;
   background: #cba7f9;
@@ -84,11 +85,15 @@
   display: inline-block;
 }
 #box .bottom input {
-  margin-left: 10%;
+  position: absolute;
+  bottom: 3%;
+  left: 10%;
 }
 #box .bottom span {
-  margin-left: 3%;
-  font-size: 2.6666666667vw;
-  line-height: 2.6666666667vw;
+  position: absolute;
+  bottom: 3%;
+  left: 20%;
+  font-size: 4vw;
+  line-height: 4vw;
   color: #9a5b57;
 }
